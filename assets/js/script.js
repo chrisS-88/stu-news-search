@@ -10,7 +10,17 @@ $("#search-button").on("click", function () {
             return response.json();
         })
         .then(function (data) {
-            console.log(data);
+            // console.log(data);
+            if (data.response && data.response.docs) {
+                for (let i = 0; i < data.response.docs.length; i++) {
+                    let content = data.response.docs[i].web_url;
+                    console.log(content);
+                    $("#top-articles").append(content);
+                }
+            } else {
+                console.log("No articles found.");
+            }
+
         })
 
 })
